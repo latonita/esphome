@@ -327,8 +327,8 @@ bool BLEClientBase::gattc_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
       }
       // For V3_WITHOUT_CACHE, we already set fast params before connecting
       // No need to update them again here
-      this->log_event_("Searching for services");
-      esp_ble_gattc_search_service(esp_gattc_if, param->cfg_mtu.conn_id, nullptr);
+      // this->log_event_("Searching for services");
+      // esp_ble_gattc_search_service(esp_gattc_if, param->cfg_mtu.conn_id, nullptr);
       break;
     }
     case ESP_GATTC_CONNECT_EVT: {
@@ -340,10 +340,10 @@ bool BLEClientBase::gattc_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
       // (gatt_client, ble_throughput) which call esp_ble_gattc_send_mtu_req in
       // ESP_GATTC_CONNECT_EVT instead of waiting for ESP_GATTC_OPEN_EVT.
       // This saves ~3ms in the connection process.
-      auto ret = esp_ble_gattc_send_mtu_req(this->gattc_if_, param->connect.conn_id);
-      if (ret) {
-        this->log_gattc_warning_("esp_ble_gattc_send_mtu_req", ret);
-      }
+      // auto ret = esp_ble_gattc_send_mtu_req(this->gattc_if_, param->connect.conn_id);
+      // if (ret) {
+      //   this->log_gattc_warning_("esp_ble_gattc_send_mtu_req", ret);
+      // }
       break;
     }
     case ESP_GATTC_DISCONNECT_EVT: {
